@@ -1,0 +1,19 @@
+.cor-navbar {
+  background: #408575!important;
+  height: 78px;
+  padding: 1rem;
+}
+
+.logout{
+  text-decoration: none !important;
+
+}
+.btn-logout {
+  background: #00796b !important;
+}
+
+.btn-logout:hover {
+  color: black;
+  background: #000000 !important;
+  box-shadow: 0 8px 50px 10px rgba(0, 0, 0, 0.3) !important;
+}

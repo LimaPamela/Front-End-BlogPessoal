@@ -1,0 +1,28 @@
+h2{
+  font-family: 'Alkalami', serif !important;
+  font-size: 54px;
+}
+h3, h4  {
+  font-family: 'Alkalami', serif !important;
+}
+h5{
+  font-family: 'Alkalami', serif !important;
+  font-size: 20px;
+}
+h6 {
+  font-family: 'Alkalami', serif !important;
+  font-size: 18px;
+}
+
+body {
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+ 
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+
+}
