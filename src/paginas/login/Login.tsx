@@ -1,10 +1,50 @@
 import { Typography, Button } from '@material-ui/core';
 import { Box, Grid, TextField } from '@mui/material';
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect, ChangeEvent } from 'react';
+import useLocalStorage from 'react-use-localstorage';
+import { Link, useNavigate } from 'react-router-dom';
+import UserLogin from '../../model/UserLogin';
+import  {api} from '../../services/Services';
 import './Login.css';
 
 function Login() {
+  let navigate = useNavigate();
+  const [token, setToken] = useLocalStorage('token');
+  const [userLogin, setUserLogin] = useState<UserLogin>(
+      {
+          id: 0,
+          nome: '',
+          usuario: '',
+          senha: '',
+          foto: '',
+          token: ''
+      }
+      );
+
+  function updateModel(event:ChangeEvent<HTMLInputElement>){
+    setUserLogin({
+    ...userLogin,
+    [event.target.name]: event.target.value
+  })
+  }
+
+  useEffect(()=> {
+    if(token !== '')
+    navigate('/Home')
+  }, [navigate, token])
+
+  async function onSubmit(e: ChangeEvent<HTMLFormElement>){
+    e.preventDefault();
+    try{
+        const resposta = await api.post(`/usuarios/logar`, userLogin)
+        setToken(resposta.data.token)
+
+        alert('Usuário logado com sucesso!');
+    }catch(error){
+        alert('Dados do usuário inconsistentes. Erro ao logar!');
+    }
+}
+
   return (
     <>
       <Grid
@@ -20,14 +60,19 @@ function Login() {
               <Typography variant="h4" align='center'>Entrar</Typography>
 
               <TextField
-                id="usuario"
-                label="Usuario"
+                onChange={(event:ChangeEvent<HTMLInputElement>) => updateModel(event)}
+                value={userLogin.usuario}
+                id="usuário"
+                name="usuario"
+                label="Usuário (e-mail)"
                 variant="outlined"
                 fullWidth
                 margin="normal"
               />
-              <TextField
+              <TextField onChange={(event:ChangeEvent<HTMLInputElement>) => updateModel(event)}
+                value={userLogin.senha}
                 id="senha"
+                name="senha"
                 label="Senha"
                 variant="outlined"
                 fullWidth
