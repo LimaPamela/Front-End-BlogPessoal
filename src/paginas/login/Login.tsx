@@ -1,11 +1,12 @@
 import { Typography, Button } from '@material-ui/core';
 import { Box, Grid, TextField } from '@mui/material';
-import React, { useState, useEffect, ChangeEvent } from 'react';
+import { useState, useEffect, ChangeEvent } from 'react';
 import useLocalStorage from 'react-use-localstorage';
 import { Link, useNavigate } from 'react-router-dom';
 import UserLogin from '../../model/UserLogin';
-import  {api} from '../../services/Services';
+import  { api, login } from '../../services/Services';
 import './Login.css';
+
 
 function Login() {
   let navigate = useNavigate();
@@ -18,8 +19,7 @@ function Login() {
           senha: '',
           foto: '',
           token: ''
-      }
-      );
+      });
 
   function updateModel(event:ChangeEvent<HTMLInputElement>){
     setUserLogin({
@@ -27,23 +27,22 @@ function Login() {
     [event.target.name]: event.target.value
   })
   }
-
-  useEffect(()=> {
-    if(token !== '')
-    navigate('/Home')
-  }, [navigate, token])
-
-  async function onSubmit(e: ChangeEvent<HTMLFormElement>){
-    e.preventDefault();
-    try{
-        const resposta = await api.post(`/usuarios/logar`, userLogin)
-        setToken(resposta.data.token)
-
-        alert('Usuário logado com sucesso!');
-    }catch(error){
-        alert('Dados do usuário inconsistentes. Erro ao logar!');
+//Mensagem de erro
+  async function conectar(event: ChangeEvent<HTMLFormElement>) {
+    event.preventDefault();
+    try {
+      await login('usuarios/logar', userLogin, setToken);
+    } catch (error) {
+      alert('Dados de usuário inválidos, Tente novamente.')
     }
-}
+  }
+
+  //Cadastra e envia o cliente para a Home
+  useEffect(()=>{
+    if(token !== ''){
+        navigate('/home')
+    }
+}, [navigate, token])
 
   return (
     <>
@@ -56,8 +55,8 @@ function Login() {
       >
         <Grid item xs={6} alignItems="center" justifyContent="center" display='flex' >
           <Box paddingX={20}>
-            <form>
-              <Typography variant="h4" align='center'>Entrar</Typography>
+          <form onSubmit={conectar}>
+              <Typography variant="h2" align='center'>Entrar</Typography>
 
               <TextField
                 onChange={(event:ChangeEvent<HTMLInputElement>) => updateModel(event)}

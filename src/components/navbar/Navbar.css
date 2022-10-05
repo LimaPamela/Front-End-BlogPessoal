@@ -1,9 +1,11 @@
 .cor-navbar {
   background: #408575!important;
-  height: 78px;
-  padding: 1rem;
-}
 
+}
+.MuiButton-textPrimary {
+  color: #ffffff;
+
+}
 .logout{
   text-decoration: none !important;
 

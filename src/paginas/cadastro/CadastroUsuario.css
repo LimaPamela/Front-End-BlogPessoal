@@ -6,3 +6,10 @@
   background-size: cover;
   
 }
+.textos2{
+  font-weight: bold !important;
+}
+
+.btnCancelar{
+  margin-right: 20px !important;
+}

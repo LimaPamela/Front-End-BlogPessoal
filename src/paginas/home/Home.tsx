@@ -1,11 +1,7 @@
-// import React from "react";
-import { Box, Button, Grid, Typography } from '@mui/material';
-import React from 'react';
+
+import React from "react";
+import { Box, Button, Grid, Typography } from '@mui/material'; //components
 import "./Home.css";
-
-// import purple from '@material-ui/core/colors/purple';
-
-// const roxin = purple[500]
 
 
 function Home() {
