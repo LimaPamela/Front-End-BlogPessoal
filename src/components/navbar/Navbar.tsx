@@ -1,5 +1,5 @@
 import React from 'react';
-import Grid  from '@mui/material';
+// import Grid  from '@mui/material';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -16,8 +16,8 @@ import MenuItem from '@mui/material/MenuItem';
 import './Navbar.css'
 import { Link } from 'react-router-dom';
 
-const pages = ['Postagens', 'Temas', 'Cadastrar temas'];
-const settings = ['Logout'];
+const pages = ['Postagem', 'Temas'];
+const settings = ['Logout', 'Conta'];
 
 const ResponsiveAppBar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
@@ -40,12 +40,13 @@ const ResponsiveAppBar = () => {
 
   return (
     // Logo -Navbar
+    
     <AppBar position="static" className="cor-navbar">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <SpaOutlinedIcon/>
           <Typography
-            variant="h6"
+            variant="h5"
             noWrap
             component="a"
             href="/"
@@ -75,17 +76,19 @@ const ResponsiveAppBar = () => {
             </IconButton>
 
             {/* Menu itens da page */}
-            <Menu
-              id="menu-appbar" color='white'
+           
+            <Menu 
+              id="menu-appbar" color='white' 
+              className='menuItens'
               anchorEl={anchorElNav}
               anchorOrigin={{
                 vertical: 'bottom',
-                horizontal: 'left', //quando em tela pequena
+                horizontal: 'center', //quando em tela pequena
               }}
               keepMounted
               transformOrigin={{
-                vertical: 'top',
-                horizontal: 'left',
+                vertical: 'bottom',
+                horizontal: 'center',
               }}
               open={Boolean(anchorElNav)}
               onClose={handleCloseNavMenu}
@@ -99,9 +102,11 @@ const ResponsiveAppBar = () => {
                 </MenuItem>
               ))}
             </Menu>
-          </Box>
-
-                {/* Em tela sx */}
+            </Box>
+            
+              {/* Em tela sx */}
+          <Box sx={{ flexGrow: 1 }}>
+          <Link to ='/home' className='text-decoration-none'>
           <Typography
             variant="h5"
             noWrap
@@ -117,12 +122,25 @@ const ResponsiveAppBar = () => {
               color: 'white',
               textDecoration: 'none',
             }}
-          >
+            >
             Suculente-se 
           </Typography>
+          </Link>
+          </Box>
+            {/* Final do Home - Login */}
 
-          {/* Botão Logout */}
-          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+          {/* Pages - menu item */}
+          <Box sx={{ flexGrow:22, display: { xs: 'none', md: 'flex' } }}>
+          <Box mx={1} className="cursor">
+                <Typography variant="h6" color="white"></Typography>
+              </Box>
+            
+              <Box>
+              <Box mx={1} className="cursor">
+                <Typography variant="h6" color="white"></Typography>
+                </Box>
+
+          
             {pages.map((page) => (
               <Button
                 key={page}
@@ -133,11 +151,14 @@ const ResponsiveAppBar = () => {
               </Button>
             ))}
           </Box>
-
+          </Box>
+         {/* Final das pages - menu item */}
+        
           {/* Foto-Avatar */}
-          <Box sx={{ flexGrow: 0 }}>
+       
+          <Box sx={{ flexGrow: 0  }}>
             <Tooltip title="Open settings">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p:0 }}>
+              <IconButton className="Avatar" onClick={handleOpenUserMenu} sx={{ p:0 }}>
                 <Avatar alt="Pamela_Suculenta" src="/paginas/img/suculenta - Avatar - login.avif" />
               </IconButton>
             </Tooltip>
@@ -146,52 +167,36 @@ const ResponsiveAppBar = () => {
               id="menu-appbar"
               anchorEl={anchorElUser}
               anchorOrigin={{
-                vertical: 'top',
+                vertical: 'bottom',
                 horizontal: 'right',
+                
               }}
               keepMounted
               transformOrigin={{
-                vertical: 'top',
+                vertical: 'bottom',
                 horizontal: 'right',
 
               }}
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
+              {/* Botão Logout- */}
               {settings.map((setting) => (
                 <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
+                 <Link to='/login' className='logout'>            
+                  <Box mx={1} className="cursor"></Box>
+                  <Typography variant="h6" color="black" textAlign="center">{setting}</Typography>
+                  </Link>
                 </MenuItem>
               ))}
               {/* final do Avatar */}
-              
+
             </Menu>
-
-            {/* Menu Navbar - logout Ajustar na tela */}
-          {/* </Box>
-          <Box mx={1} className="cursor">
-                <Typography variant="h6" color="black">
-                  Postagens
-                </Typography>
-              </Box>
-            
-
-              <Box mx={1} className="cursor">
-                <Typography variant="h6" color="black">
-                  Temas
-                </Typography>
-              </Box>
-              <Link to='/login' className='logout'>            
-                  <Box mx={1} className="cursor">
-                      <Typography variant="h6" color="black">
-                        Logout
-                      </Typography>
-                  </Box>
-                </Link> */}
           </Box>
         </Toolbar>
       </Container>
     </AppBar>
+  
   );
 };
 export default ResponsiveAppBar;

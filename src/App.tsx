@@ -7,7 +7,7 @@ import Login from './paginas/login/Login';
 import Footer from './components/footer/Footer';
 import Navbar from './components/navbar/Navbar';
 import ListaPostagem from './components/postagens/listapostagem/ListaPostagem';
-import ListaTemas from './components/temas/ListaTemas';
+import ListaTemas from './components/temas/ListaTema';
 
 function App() {
   return (

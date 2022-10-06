@@ -89,10 +89,10 @@ function Login() {
 
             <Box display="flex" justifyContent='center' marginTop={2}>
             <Box marginRight={1}>
-              <Typography variant='subtitle1'>Ainda não tem uma conta?</Typography>
+              <Typography flex-wrap='wrap' className="espacoLinha" variant='subtitle1'>Ainda não tem uma conta?</Typography>
             </Box>
               <Link to='/cadastro'>
-                <Typography variant='subtitle1' align='center'>Cadastre-se</Typography>
+                <Typography flex-wrap='wrap' className="espacoLinha" variant='subtitle1' align='center'>Cadastre-se</Typography>
               </Link>
             </Box>
           </Box>

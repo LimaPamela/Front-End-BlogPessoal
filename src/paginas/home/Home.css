@@ -1,0 +1,14 @@
+.espacoLine{
+  line-height: normal !important;
+  /* text-align: center !important; */
+}
+.linhaespaco{
+  line-height: 30% !important;
+}
+.btgEspaco{
+  text-align: auto !important;
+}
+.imgHome{
+  max-width:100% !important;
+  max-height:400% !important;
+}

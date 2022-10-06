@@ -1,10 +1,19 @@
 .cor-navbar {
   background: #408575!important;
-
+}
+.menuItens{
+  padding:100px!important;
+  align-items: center;
 }
 .MuiButton-textPrimary {
-  color: #ffffff;
+  color: #ffffff!important;
 
+}
+.text-decoration-none{
+  text-decoration: none!important;
+}
+.Avatar{
+  justify-content:flex-end!important;
 }
 .logout{
   text-decoration: none !important;
