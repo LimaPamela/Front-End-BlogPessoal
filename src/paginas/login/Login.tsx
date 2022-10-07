@@ -4,8 +4,10 @@ import { useState, useEffect, ChangeEvent } from 'react';
 import useLocalStorage from 'react-use-localstorage';
 import { Link, useNavigate } from 'react-router-dom';
 import UserLogin from '../../model/UserLogin';
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import  { api, login } from '../../services/Services';
 import './Login.css';
+import { toast } from 'react-toastify';
 
 
 function Login() {
@@ -27,22 +29,45 @@ function Login() {
     [event.target.name]: event.target.value
   })
   }
-//Mensagem de erro
-  async function conectar(event: ChangeEvent<HTMLFormElement>) {
-    event.preventDefault();
-    try {
-      await login('usuarios/logar', userLogin, setToken);
-    } catch (error) {
-      alert('Dados de usuário inválidos, Tente novamente.')
-    }
-  }
 
-  //Cadastra e envia o cliente para a Home
-  useEffect(()=>{
-    if(token !== ''){
-        navigate('/home')
-    }
-}, [navigate, token])
+    //Cadastra e envia o cliente para a Home
+    useEffect(()=>{
+      if(token !== ''){
+          navigate('/home')
+      }
+  }, [navigate, token])
+
+
+//Mensagem de erro
+async function conectar(e: ChangeEvent<HTMLFormElement>){
+  e.preventDefault();
+  try{
+      await login(`/usuarios/logar`, userLogin, setToken)
+      toast.success('Usuário logado com sucesso!', {
+          position: "top-right",
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: false,
+          draggable: false,
+          theme: "colored",
+          progress: undefined,
+          });
+  }catch(error){
+      toast.error('Dados do usuário inconsistentes. Erro ao logar!', {
+          position: "top-right",
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: false,
+          draggable: false,
+          theme: "colored",
+          progress: undefined,
+          });
+  }
+}
+
+
 
   return (
     <>

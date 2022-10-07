@@ -1,37 +1,40 @@
-import { Typography } from '@material-ui/core'
-import { Box, Button, Grid, TextField } from '@mui/material'
-import { Link, useNavigate } from 'react-router-dom';
-import { useState, useEffect, ChangeEvent } from 'react';
-import User from '../../model/User';
-import { cadastroUsuario } from '../../services/Services';
-import './CadastroUsuario.css';
-
+import { Typography } from "@material-ui/core";
+import { Box, Button, Grid, TextField } from "@mui/material";
+import { Link, useNavigate } from "react-router-dom";
+import { useState, useEffect, ChangeEvent } from "react";
+import User from "../../model/User";
+import { cadastroUsuario } from "../../services/Services";
+import "./CadastroUsuario.css";
+import { toast } from "react-toastify";
 
 function CadastroUsuario() {
   let navigate = useNavigate();
-
-  const [confirmarSenha, setConfirmarSenha] = useState<String>('');
-
-  function confirmarSenhaHandle(event: ChangeEvent<HTMLInputElement>) {
-    setConfirmarSenha(event.target.value);
-  }
-
-
+  const [confirmarSenha, setConfirmarSenha] = useState<String>("");
   const [user, setUser] = useState<User>({
     id: 0,
-    nome: '',
-    usuario: '',
-    senha: '',
-    foto: '',
+    nome: "",
+    usuario: "",
+    senha: "",
+    foto: "",
   });
 
   const [userResult, setUserResult] = useState<User>({
     id: 0,
-    nome: '',
-    usuario: '',
-    senha: '',
-    foto: '',
+    nome: "",
+    usuario: "",
+    senha: "",
+    foto: "",
   });
+
+  useEffect(() => {
+    if (userResult.id !== 0) {
+      navigate("/login");
+    }
+  }, [navigate, userResult]);
+
+  function confirmarSenhaHandle(event: ChangeEvent<HTMLInputElement>) {
+    setConfirmarSenha(event.target.value);
+  }
 
   function updateModel(event: ChangeEvent<HTMLInputElement>) {
     setUser({
@@ -42,16 +45,31 @@ function CadastroUsuario() {
 
   async function cadastrar(event: ChangeEvent<HTMLFormElement>) {
     event.preventDefault();
-    if (confirmarSenha === user.senha && user.senha.length >= 8) {
-      try {
-        await cadastroUsuario('usuarios/cadastrar', user, setUserResult);
-        alert('Usuário criado com sucesso. Efetue seu login, por favor.');
-      } catch (error) {
-        alert('Falha ao cadastrar o usuário. Por favor, confira os campos');
-      }
+    if (confirmarSenha === user.senha) {
+      cadastroUsuario(`/usuarios/cadastrar`, user, setUserResult);
+      toast.success("Usuario cadastrado com sucesso", {
+        position: "top-right",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: false,
+        theme: "colored",
+        progress: undefined,
+      });
     } else {
-      alert(
-        'Senhas divergentes, ou menores que 8 caracteres. Por favor, verifique os campos.'
+      toast.error(
+        "Dados inconsistentes. Favor verificar as informações de cadastro.",
+        {
+          position: "top-right",
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: false,
+          draggable: false,
+          theme: "colored",
+          progress: undefined,
+        }
       );
     }
   }
@@ -59,10 +77,9 @@ function CadastroUsuario() {
   //Cadastra e envia o cliente para o login
   useEffect(() => {
     if (userResult.id !== 0) {
-      navigate('/login');
+      navigate("/login");
     }
   }, [navigate, userResult]);
-
 
   return (
     <>
@@ -83,8 +100,8 @@ function CadastroUsuario() {
                 fullWidth
                 margin="normal"
                 onChange={(event: ChangeEvent<HTMLInputElement>) =>
-                  updateModel(event)}
-                
+                  updateModel(event)
+                }
               />
               <TextField
                 required
@@ -96,7 +113,8 @@ function CadastroUsuario() {
                 fullWidth
                 margin="normal"
                 onChange={(event: ChangeEvent<HTMLInputElement>) =>
-                  updateModel(event)}
+                  updateModel(event)
+                }
               />
               <TextField
                 required
@@ -108,7 +126,8 @@ function CadastroUsuario() {
                 fullWidth
                 margin="normal"
                 onChange={(event: ChangeEvent<HTMLInputElement>) =>
-                  updateModel(event)}
+                  updateModel(event)
+                }
               />
               <TextField
                 required
@@ -118,10 +137,11 @@ function CadastroUsuario() {
                 label="Senha"
                 variant="outlined"
                 fullWidth
-                type='password'
+                type="password"
                 margin="normal"
                 onChange={(event: ChangeEvent<HTMLInputElement>) =>
-                  updateModel(event)}
+                  updateModel(event)
+                }
               />
               <TextField
                 required
@@ -131,31 +151,29 @@ function CadastroUsuario() {
                 label="Confirmar senha"
                 variant="outlined"
                 fullWidth
-                type='password'
+                type="password"
                 margin="normal"
                 onChange={(event: ChangeEvent<HTMLInputElement>) =>
-                  confirmarSenhaHandle(event)}
+                  confirmarSenhaHandle(event)
+                }
               />
 
-              <Box display='flex' justifyContent='space-around' marginTop={2}>
-                <Link to='/login' className='text-decoration-none'>
+              <Box display="flex" justifyContent="space-around" marginTop={2}>
+                <Link to="/login" className="text-decoration-none">
                   <Button type="submit" variant="contained" color="secondary">
                     Cancelar
                   </Button>
                 </Link>
-                  <Button type="submit" variant="contained" color="primary">
-                    Cadastrar
-                  </Button>
+                <Button type="submit" variant="contained" color="primary">
+                  Cadastrar
+                </Button>
               </Box>
             </form>
           </Grid>
-          
         </Grid>
-
       </Grid>
     </>
-  )
+  );
 }
 
 export default CadastroUsuario;
-

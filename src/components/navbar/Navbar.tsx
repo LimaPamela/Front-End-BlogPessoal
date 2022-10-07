@@ -15,6 +15,14 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import './Navbar.css'
 import { Link } from 'react-router-dom';
+import {useNavigate } from 'react-router-dom'
+import { useSelector } from 'react-redux';
+import { TokenState } from '../../../store/tokens/tokensReducer';
+import { useDispatch } from "react-redux";
+import { addToken } from '../../../store/tokens/actions';
+import {toast} from 'react-toastify';
+
+
 
 const pages = ['Postagem', 'Temas'];
 const settings = ['Logout', 'Conta'];
@@ -38,9 +46,33 @@ const ResponsiveAppBar = () => {
     setAnchorElUser(null);
   };
 
-  return (
     // Logo -Navbar
+  
+    function ResponsiveAppBar() {
+      const token = useSelector<TokenState, TokenState["tokens"]>(
+        (state) => state.tokens
+      );
+    let navigate = useNavigate();
+    const dispatch = useDispatch();
     
+    function goLogout(){
+        dispatch(addToken(''));
+        toast.info('Usuário deslogado', {
+            position: "top-right",
+            autoClose: 2000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: false,
+            draggable: false,
+            theme: "colored",
+            progress: undefined,
+        });
+        navigate('/login')
+    }
+    
+    var navbarComponent;
+    
+    if(token != ""){
     <AppBar position="static" className="cor-navbar">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
@@ -196,7 +228,14 @@ const ResponsiveAppBar = () => {
         </Toolbar>
       </Container>
     </AppBar>
+  }
   
-  );
-};
+  return (
+    <>
+    {navbarComponent}
+    </>
+
+  )
+}
+
 export default ResponsiveAppBar;
