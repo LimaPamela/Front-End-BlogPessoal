@@ -1,4 +1,4 @@
-.cor-navbar {
+/* .cor-navbar {
   background: #408575!important;
 }
 .menuItens{
@@ -27,4 +27,12 @@
   color: black;
   background: #000000 !important;
   box-shadow: 0 8px 50px 10px rgba(0, 0, 0, 0.3) !important;
+} */
+.navLink {
+  text-decoration: none;
+  color: #fff;
+}
+
+.cursor {
+  cursor: pointer;
 }

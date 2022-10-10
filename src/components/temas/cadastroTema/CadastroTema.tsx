@@ -2,8 +2,8 @@ import React, {useState, useEffect, ChangeEvent} from 'react'
 import { Container, Typography, TextField, Button } from "@material-ui/core"
 import {useNavigate, useParams } from 'react-router-dom'
 import './CadastroTema.css';
-import Tema from '../../../models/Tema';
-import { buscaId, post, put } from '../../../services/Service';
+import Tema from '../../../model/Tema';
+import { buscaId, post, put } from '../../../services/Services';
 import { useSelector } from 'react-redux';
 import { TokenState } from '../../../store/tokens/tokensReducer';
 import { toast } from 'react-toastify';
@@ -21,7 +21,7 @@ function CadastroTema() {
     })
 
     useEffect(() => {
-        if (token == "") {
+        if (token === "") {
             toast.error('Você precisa estar logado', {
                 position: "top-right",
                 autoClose: 2000,
@@ -32,17 +32,18 @@ function CadastroTema() {
                 theme: "colored",
                 progress: undefined,
                 });
-            navigate.push("/login")
+            push("/login")
     
         }
-    }, [token])
+    }, [navigate, token])
 
     useEffect(() =>{
         if(id !== undefined){
             findById(id)
         }
-    }, [id])
+    }, [findById, id])
 
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     async function findById(id: string) {
         buscaId(`/tema/${id}`, setTema, {
             headers: {
@@ -120,3 +121,7 @@ function CadastroTema() {
 }
 
 export default CadastroTema;
+
+function push(arg0: string) {
+    throw new Error('Function not implemented.');
+}

@@ -21,7 +21,7 @@ function ListaTemas() {
   //verificar se a pessoa tem token, se não tiver, mandar pra login
   useEffect(() => {
     if (token === '') {
-      alert('Ai não meu bom')
+      alert('Você precisa estar logado!')
       navigate('/login')
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -44,7 +44,7 @@ function ListaTemas() {
     <>
     {/* mapeamento do array de temas, para recriar a estrutura inteira para cada tema existente */}
       {temas.map(tema => (
-        <Box m={2} >
+        <Box m={2} key={tema.id}>
         <Card variant="outlined">
           <CardContent>
             <Typography color="textSecondary" gutterBottom>

@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react'
 import {Box, Card, CardActions, CardContent, Button, Typography} from '@material-ui/core';
 import './DeletarTema.css';
 import { useNavigate, useParams } from 'react-router-dom';
-import { buscaId, deleteId } from '../../../services/Service';
-import Tema from '../../../models/Tema';
+import { buscaId, deleteId } from '../../../services/Services';
+import Tema from '../../../model/Tema';
 import { useSelector } from 'react-redux';
 import { TokenState } from '../../../store/tokens/tokensReducer';
 import { toast } from 'react-toastify';
@@ -17,7 +17,7 @@ function DeletarTema() {
     const [tema, setTema] = useState<Tema>()
 
     useEffect(() => {
-        if (token == "") {
+        if (token === "") {
           toast.error('Você precisa estar logado', {
             position: "top-right",
             autoClose: 2000,
@@ -31,14 +31,15 @@ function DeletarTema() {
             navigate("/login")
     
         }
-    }, [token])
+    }, [navigate, token])
 
     useEffect(() =>{
         if(id !== undefined){
             findById(id)
         }
-    }, [id])
+    }, [findById, id])
 
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     async function findById(id: string) {
         buscaId(`/tema/${id}`, setTema, {
             headers: {
@@ -48,7 +49,7 @@ function DeletarTema() {
         }
 
         function sim() {
-            navigate.push('/temas')
+          push('/temas')
             deleteId(`/tema/${id}`, {
               headers: {
                 'Authorization': token
@@ -104,3 +105,7 @@ function DeletarTema() {
   );
 }
 export default DeletarTema;
+
+function push(arg0: string) {
+  throw new Error('Function not implemented.');
+}

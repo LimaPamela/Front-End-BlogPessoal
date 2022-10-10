@@ -15,6 +15,6 @@ export const tokenReducer = (state: TokenState = initialState, action: Action) =
         }
 
         default:
-            return state
+            return state;
     }
 }
