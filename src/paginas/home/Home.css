@@ -1,13 +1,3 @@
-.espacoLine{
-  line-height: normal !important;
-  /* text-align: center !important; */
-}
-.linhaespaco{
-  line-height: 30% !important;
-}
-.btgEspaco{
-  text-align: auto !important;
-}
 .imgHome{
   max-width:100% !important;
   max-height:400% !important;
@@ -22,11 +12,11 @@
  font-weight: bold !important;
 }
 
-/* .botao{
+.botao{
   border-color: white !important;
   background-color: #3F51B5;
   color: white !important;
-} */
+}
 
 .postagens{
   background-color: white;

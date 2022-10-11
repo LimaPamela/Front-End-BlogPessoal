@@ -9,6 +9,6 @@
 .text-decoration-none {
   text-decoration: none;
 }
-.espacoLinha{
-  line-height: normal !important;
+.textos1{
+  font-weight: bold !important;
 }

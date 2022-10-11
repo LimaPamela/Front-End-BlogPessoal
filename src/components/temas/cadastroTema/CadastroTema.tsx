@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, {useState, useEffect, ChangeEvent} from 'react'
 import { Container, Typography, TextField, Button } from "@material-ui/core"
 import {useNavigate, useParams } from 'react-router-dom'
@@ -17,7 +18,7 @@ function CadastroTema() {
       );
     const [tema, setTema] = useState<Tema>({
         id: 0,
-        descricao: ''
+        descricao: '',
     })
 
     useEffect(() => {
@@ -32,7 +33,7 @@ function CadastroTema() {
                 theme: "colored",
                 progress: undefined,
                 });
-            push("/login")
+            navigate("/login");
     
         }
     }, [navigate, token])
@@ -43,7 +44,7 @@ function CadastroTema() {
         }
     }, [findById, id])
 
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    
     async function findById(id: string) {
         buscaId(`/tema/${id}`, setTema, {
             headers: {
@@ -122,6 +123,3 @@ function CadastroTema() {
 
 export default CadastroTema;
 
-function push(arg0: string) {
-    throw new Error('Function not implemented.');
-}
