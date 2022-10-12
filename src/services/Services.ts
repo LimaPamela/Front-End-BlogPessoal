@@ -1,7 +1,8 @@
 import axios from "axios";
 
 export const api = axios.create({
-  baseURL: "https://blogpessoalbackendgen.herokuapp.com/",
+  baseURL: "https://pamdb.herokuapp.com/"
+  // https://blogpessoalbackendgen.herokuapp.com/",
   //https://blogpessoal.onrender.com/
 });
 //assync é o tempo de resposta com o Backend

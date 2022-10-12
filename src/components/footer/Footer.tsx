@@ -5,9 +5,15 @@ import GitHubIcon from '@mui/icons-material/GitHub';
 import './Footer.css'
 
 function Footer() {
-  return (
-    <>
-      <Grid
+
+  const token = useSelector<TokenState, TokenState["tokens"]>(
+    (state) => state.tokens
+  )
+
+  let footerContent
+
+  if(token !== '') {
+    footerContent = <Grid
         container
         direction="row"
         justifyContent="center"
@@ -62,8 +68,13 @@ function Footer() {
           </Box> 
         </Grid>
       </Grid>
-    </>
-  );
+}
+
+return (
+  <>
+    {footerContent}
+  </>
+);
 }
 
 export default Footer;
