@@ -6,8 +6,11 @@ import './Navbar.css'
 import { useSelector } from 'react-redux';
 import { useDispatch } from "react-redux";
 import {toast} from 'react-toastify';
-import { addToken } from '../../store/tokens/actions';
 import { TokenState } from '../../store/tokens/tokensReducer';
+import { addToken } from '../../store/tokens/Action';
+
+
+
 
 function Navbar() {
     const token = useSelector<TokenState, TokenState["tokens"]>(
@@ -34,46 +37,47 @@ function Navbar() {
     var navbarComponent;
 
     if(token !== ""){
-        navbarComponent = <AppBar position="static">
+        navbarComponent = <AppBar position="static"
+        style={{ backgroundColor: "#408575" }} >
         <Toolbar variant="dense">
-            <Box className='cursor'>
-                <Typography variant="h5" color="inherit">
-                    BlogPessoal
+            <Box className='cursor' >
+                <Typography variant="h5" style={{ color: "#ffffff" }}>
+                    Pamela Lima
                 </Typography>
             </Box>
 
-            <Box display="flex" justifyContent="start">
+            <Box display="flex" justifyContent= "center">
                 <Link to="/home" className="text-decorator-none">
                     <Box mx={1} className='cursor'>
-                        <Typography variant="h6" color="inherit">
+                        <Typography variant="h6" style={{ color: "#ffffff" }}>
                             home
                         </Typography>
                     </Box>
                 </Link>
                 <Link to="/posts" className="text-decorator-none">
                     <Box mx={1} className='cursor'>
-                        <Typography variant="h6" color="inherit">
+                        <Typography variant="h6" style={{ color: "#ffffff" }}>
                             postagens
                         </Typography>
                     </Box>
                 </Link>
                 <Link to="/temas" className="text-decorator-none">
                 <Box mx={1} className='cursor'>
-                    <Typography variant="h6" color="inherit">
+                    <Typography variant="h6" style={{ color: "#ffffff" }}>
                         temas
                     </Typography>
                 </Box>
                 </Link>
                 <Link to="/formularioTema" className="text-decorator-none">
                 <Box mx={1} className='cursor'>
-                    <Typography variant="h6" color="inherit">
+                    <Typography variant="h6" style={{ color: "#ffffff" }}>
                         cadastrar tema
                     </Typography>
                 </Box>
                 </Link>
               
                     <Box mx={1} className='cursor' onClick={goLogout}>
-                        <Typography variant="h6" color="inherit">
+                        <Typography variant="h6" style={{ color: "#ffffff" }}>
                             logout
                         </Typography>
                     </Box>

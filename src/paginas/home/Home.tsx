@@ -6,7 +6,6 @@ import './Home.css';
 import { useNavigate } from 'react-router';
 import { useSelector } from 'react-redux';
 import { TokenState } from '../../store/tokens/tokensReducer';
-import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 function Home() {
@@ -32,29 +31,32 @@ function Home() {
   
       }
   }, [navigate, token])
-    return (
-        <>
-            <Grid container direction="row" justifyContent="center" alignItems="center" className='caixa'>
-                <Grid alignItems="center" item xs={6}>
-                    <Box paddingX={20} >
-                        <Typography variant="h3" gutterBottom color="textPrimary" component="h3" align="center" className='titulo'>Seja bem vindo(a)!</Typography>
-                        <Typography variant="h5" gutterBottom color="textPrimary" component="h5" align="center" className='titulo'>expresse aqui os seus pensamentos e opiniões!</Typography>
-                    </Box>
-                    <Box display="flex" justifyContent="center">
-                        <Box marginRight={1}>
-                            <ModalPostagem />
-                        </Box>
-                        <Link to="/posts" className="text-decorator-none">
-                            <Button variant="outlined" className='botao'>Ver Postagens</Button>
-                        </Link>
-                    </Box>
-                </Grid>
+
+  return (
+    <>
+      <Grid container direction="row" justifyContent="center" alignItems="center" style={{ backgroundColor: "#FFFFFF" }}>
+        <Grid alignItems="center" item xs={6}>
+          <Box paddingX={20} >
+            <Typography variant="h3" gutterBottom color="textPrimary" component="h3" align="center" style={{ color: "#000000", fontWeight: "bold" }}>Seja bem vindo(a)!</Typography>
+            <Typography variant="h5" gutterBottom color="textPrimary" component="h5" align="center" style={{ color: "#000000", fontWeight: "bold" }}>expresse aqui os seus pensamentos e opiniões!</Typography>
+          </Box>
+          <Box display="flex" justifyContent="center">
+            <Box marginRight={1}>
+              <ModalPostagem />
+
+            </Box>
+            <Button variant="outlined" style={{ borderColor: "white", backgroundColor: "#000000", color: "white" }}>Ver Postagens</Button>
+          </Box>
+    
+     </Grid>
                 <Grid item xs={6} >
                 <img className="imgHome"  src="https://media.istockphoto.com/photos/mix-of-different-echeveria-succulent-house-plant-pots-concept-of-home-picture-id1341358322?k=20&m=1341358322&s=612x612&w=0&h=J2VaVxt-I0UTiiWZXZjGzp9mOvdQPlOjQJt-dDzEELo=" alt="ImgHome"  width="500px" height="500px" />
                 </Grid>
-                <Grid xs={12} className='postagens'>
+                
+                <Grid container justifyContent='center' alignItems='center'>
                     <TabPostagem />
                 </Grid>
+
             </Grid>
         </>
     );

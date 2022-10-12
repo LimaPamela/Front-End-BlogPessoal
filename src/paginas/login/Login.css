@@ -1,5 +1,9 @@
-.bg-login{
+.bgLinear{
+  background: linear-gradient(45deg, #D9ECC7 30%, #07A3B2 90% ) ;
+  max-width: 100%;
   min-height: 100vh;
+}
+.imglogin{
   background-image: url('https://media.istockphoto.com/photos/ultrasonic-humidifier-among-houseplants-flower-pots-with-succulent-picture-id1369589624?k=20&m=1369589624&s=612x612&w=0&h=VMKcw1ueWEqzN6ui89YCSIiT2qS7CPRp4Luv0fI9yNo=');
   max-width: 100%;
   background-repeat: no-repeat;
