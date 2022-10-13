@@ -1,5 +1,5 @@
 import React from 'react';
-import { AppBar, Toolbar, Typography, Box } from '@material-ui/core';
+import { AppBar, Toolbar, Typography, Box, Grid } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import {useNavigate } from 'react-router-dom'
 import './Navbar.css'
@@ -10,15 +10,14 @@ import { TokenState } from '../../store/tokens/tokensReducer';
 import { addToken } from '../../store/tokens/Action';
 
 
-
-
 function Navbar() {
+
+    let history = useNavigate()
+    let dispatch = useDispatch()
     const token = useSelector<TokenState, TokenState["tokens"]>(
-        (state) => state.tokens
-      );
-    let navigate = useNavigate();
-    const dispatch = useDispatch();
-    
+      (state) => state.tokens
+    )
+  
     function goLogout(){
         dispatch(addToken(''));
         toast.info('Usuário deslogado', {
@@ -31,13 +30,13 @@ function Navbar() {
             theme: "colored",
             progress: undefined,
         });
-        navigate('/login')
-    }
+        history('/login')
 
-    var navbarComponent;
+      let navBarComponent
+  
 
     if(token !== ""){
-        navbarComponent = <AppBar position="static"
+        navBarComponent = <AppBar position="static"
         style={{ backgroundColor: "#408575" }} >
         <Toolbar variant="dense">
             <Box className='cursor' >
@@ -46,36 +45,41 @@ function Navbar() {
                 </Typography>
             </Box>
 
-            <Box display="flex" justifyContent= "center">
-                <Link to="/home" className="text-decorator-none">
-                    <Box mx={1} className='cursor'>
+            <Grid container justifyContent="flex-end">
+          <Box display="flex" justifyContent="start">
+
+            <Box mx={1} className="cursor">
+              <Link to="/home" className="navLink">
                         <Typography variant="h6" style={{ color: "#ffffff" }}>
                             home
                         </Typography>
+                        </Link>
                     </Box>
-                </Link>
-                <Link to="/posts" className="text-decorator-none">
+                        
                     <Box mx={1} className='cursor'>
+                        <Link to="/posts" className="text-decorator-none">
                         <Typography variant="h6" style={{ color: "#ffffff" }}>
                             postagens
                         </Typography>
+                        </Link>
                     </Box>
-                </Link>
-                <Link to="/temas" className="text-decorator-none">
+                               
                 <Box mx={1} className='cursor'>
+                    <Link to="/temas" className="text-decorator-none">
                     <Typography variant="h6" style={{ color: "#ffffff" }}>
                         temas
                     </Typography>
+                    </Link>
                 </Box>
-                </Link>
+                                
+               <Box mx={1} className='cursor'>
                 <Link to="/formularioTema" className="text-decorator-none">
-                <Box mx={1} className='cursor'>
                     <Typography variant="h6" style={{ color: "#ffffff" }}>
                         cadastrar tema
                     </Typography>
+                    </Link>
                 </Box>
-                </Link>
-              
+                            
                     <Box mx={1} className='cursor' onClick={goLogout}>
                         <Typography variant="h6" style={{ color: "#ffffff" }}>
                             logout
@@ -83,15 +87,15 @@ function Navbar() {
                     </Box>
                 
             </Box>
-
+        </Grid>
         </Toolbar>
     </AppBar>
     }
     return (
         <>
-            {navbarComponent}
+            {navBarComponent}
         </>
-    )
+    );
 }
-
+}
 export default Navbar;

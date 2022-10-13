@@ -1,46 +1,48 @@
-import { Typography } from '@material-ui/core';
-import { Box, Button, Grid, TextField } from '@mui/material';
-import { ChangeEvent, useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import Usuario from '../../model/User';
-import { cadastroUsuario } from '../../services/Services';
-import './CadastroUsuario.css';
+import { Typography } from "@material-ui/core";
+import { Box, Button, Grid, TextField } from "@mui/material";
+import { ChangeEvent, useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import Usuario from "../../model/User";
+import { cadastroUsuario } from "../../services/Services";
+import "./CadastroUsuario.css";
 
 function CadastroUsuario() {
   let navigate = useNavigate();
-
-  const [confirmarSenha, setConfirmarSenha] = useState<String>('');
-
-  const [cadastro, setCadastro] = useState(false)
-
- 
+  const [confirmarSenha, setConfirmarSenha] = useState<String>("");
+  const [cadastro, setCadastro] = useState(false);
 
   function confirmarSenhaHandle(event: ChangeEvent<HTMLInputElement>) {
     setConfirmarSenha(event.target.value);
   }
 
-  // One way binding
   const [user, setUser] = useState<Usuario>({
     id: 0,
-    nome: '',
-    usuario: '',
-    senha: '',
-    foto: '',
+    nome: "",
+    usuario: "",
+    senha: "",
+    foto: "",
   });
 
   const [userResult, setUserResult] = useState<Usuario>({
     id: 0,
-    nome: '',
-    usuario: '',
-    senha: '',
-    foto: '',
+    nome: "",
+    usuario: "",
+    senha: "",
+    foto: "",
   });
 
   useEffect(() => {
-    if(user.nome.length > 3 && user.usuario !== '' && user.senha.length >= 8 ) {
-      setCadastro(true)
+    if (user.nome.length > 3 && user.usuario !== "" && user.senha.length >= 8) {
+      setCadastro(true);
     }
-  }, [user])
+  }, [user]);
+
+  // useEffect(() => {
+  //   if (userResult.id !== 0) {
+  //     navigate("/login");
+  //   }
+  // }, [navigate, userResult]);
 
   function updateModel(event: ChangeEvent<HTMLInputElement>) {
     setUser({
@@ -49,28 +51,41 @@ function CadastroUsuario() {
     });
   }
 
-  //  == > comparação basica => 2 = '2'
-  //  === > comparação estrita => 2 != '2'
 
-  async function cadastrar(event: ChangeEvent<HTMLFormElement>) {
-    event.preventDefault();
-    if (confirmarSenha === user.senha && user.senha.length >= 8) {
-      try {
-        await cadastroUsuario('usuarios/cadastrar', user, setUserResult);
-        alert('Usuário criado com sucesso. Efetue seu login, por favor.');
-      } catch (error) {
-        alert('Falha ao cadastrar o usuário. Por favor, confira os campos');
-      }
+  async function cadastrar(e: ChangeEvent<HTMLFormElement>) {
+    e.preventDefault();
+    if (confirmarSenha === user.senha) {
+      cadastroUsuario(`/usuarios/cadastrar`, user, setUserResult);
+      toast.success("Usuario cadastrado com sucesso", {
+        position: "top-right",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: false,
+        theme: "colored",
+        progress: undefined,
+      });
     } else {
-      alert(
-        'Senhas divergentes, ou menores que 8 caracteres. Por favor, verifique os campos.'
+      toast.error(
+        "Dados inconsistentes. Favor verificar as informações de cadastro.",
+        {
+          position: "top-right",
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: false,
+          draggable: false,
+          theme: "colored",
+          progress: undefined,
+        }
       );
     }
   }
 
   useEffect(() => {
     if (userResult.id !== 0) {
-      navigate('/login');
+      navigate("/login");
     }
   }, [navigate, userResult]);
 
@@ -151,15 +166,23 @@ function CadastroUsuario() {
                 }
               />
 
-              <Box display="flex" justifyContent="space-around" marginTop={2} >
+              <Box display="flex" justifyContent="space-around" marginTop={2}>
                 <Link to="/login" className="text-decoration-none">
                   <Button type="submit" variant="contained" color="secondary">
                     Cancelar
                   </Button>
                 </Link>
-                <Button type="submit" variant="contained" color="primary" disabled={!cadastro}>
-                  Cadastrar
-                </Button>
+
+                <Link to="/login">
+                  <Button
+                    type="submit"
+                    variant="contained"
+                    color="primary"
+                    disabled={!cadastro}
+                  >
+                    Cadastrar
+                  </Button>
+                </Link>
               </Box>
             </form>
           </Grid>

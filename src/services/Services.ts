@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export const api = axios.create({
-  baseURL: "https://pamdb.herokuapp.com/"
+  baseURL: "https://pamdb.herokuapp.com"
   // https://blogpessoalbackendgen.herokuapp.com/",
   //https://blogpessoal.onrender.com/
 });

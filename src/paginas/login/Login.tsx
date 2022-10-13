@@ -1,90 +1,100 @@
-import { Typography, Button } from '@material-ui/core';
-import { Box, Grid, TextField } from '@mui/material';
-import React, { ChangeEvent, useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { Link, useNavigate } from 'react-router-dom';
-import { toast } from 'react-toastify';
-import UserLogin from '../../model/UserLogin';
-import { login } from '../../services/Services';
-import { addToken, addId } from '../../store/tokens/Action';
-import './Login.css';
+import { Typography, Button } from "@material-ui/core";
+import { Box, Grid, TextField } from "@mui/material";
+import React, { ChangeEvent, useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import UserLogin from "../../model/UserLogin";
+import { login } from "../../services/Services";
+import { addId, addToken } from "../../store/tokens/Action";
+import "./Login.css";
 
 function Login() {
   let navigate = useNavigate();
-  const dispatch = useDispatch()
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [token, setToken] = useState('')
-
+  const dispatch = useDispatch();
+  const [token] = useState("");
   const [userLogin, setUserLogin] = useState<UserLogin>({
     id: 0,
-    nome: '',
-    usuario: '',
-    senha: '',
-    foto: '',
-    token: '',
+    usuario: "",
+    nome: "",
+    senha: "",
+    foto: "",
+    token: "",
   });
-  
   const [respUserLogin, setRespUserLogin] = useState<UserLogin>({
     id: 0,
-    nome: '',
-    usuario: '',
-    senha: '',
-    foto: '',
-    token: '',
+    nome: "",
+    usuario: "",
+    senha: "",
+    foto: "",
+    token: "",
   });
 
-  function updateModel(event: ChangeEvent<HTMLInputElement>) {
+  function updateModel(e: ChangeEvent<HTMLInputElement>) {
     setUserLogin({
       ...userLogin,
-      [event.target.name]: event.target.value,
+      [e.target.name]: e.target.value,
     });
   }
 
   useEffect(() => {
-    if(userLogin.usuario !== '' && userLogin.senha !== '' && userLogin.senha.length >= 8) {
-      setForm(true)
+    if (
+      userLogin.usuario !== "" &&
+      userLogin.senha !== "" &&
+      userLogin.senha.length >= 8
+    ) {
+      setForm(true);
     }
-  },[userLogin])
+  }, [userLogin]);
 
-  const [form, setForm] = useState(false)
+  const [form, setForm] = useState(false);
 
-  async function conectar(event: ChangeEvent<HTMLFormElement>) {
-    event.preventDefault();
+  async function conectar(e: ChangeEvent<HTMLFormElement>) {
+    e.preventDefault();
     try {
-      await login('usuarios/logar', userLogin, setRespUserLogin);
-      toast.success('Usuário conectado. ', {
-        theme: 'colored',
+      await login(`/usuarios/logar`, userLogin, setRespUserLogin);
+      toast.success("Usuário logado com sucesso!", {
+        position: "top-right",
         autoClose: 2000,
-        hideProgressBar: true
-      })
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: false,
+        theme: "colored",
+        progress: undefined,
+      });
     } catch (error) {
-      toast.error(`Erro ao logar.`, {
-        theme: 'colored',
+      toast.error("Dados do usuário inconsistentes. Erro ao logar!", {
+        position: "top-right",
         autoClose: 2000,
-        hideProgressBar: true
-      })
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: false,
+        theme: "colored",
+        progress: undefined,
+      });
     }
   }
-
   useEffect(() => {
-    if (token !== '') {
-      dispatch(addToken(token))
-      navigate('/home');
+    if (token !== "") {
+      dispatch(addToken(token));
+      navigate("/home");
     }
   }, [dispatch, navigate, token]);
 
   //metodo para pegar o token e o id do json e guardar no redux
   useEffect(()=> {
     if(respUserLogin.token !== ''){
-      dispatch(addToken(token))
+      dispatch(addToken(respUserLogin.token))
       dispatch(addId(respUserLogin.id.toString()))
       navigate('/home');
     }
-  }, [dispatch, navigate, respUserLogin.id, respUserLogin.token, token])
+  }, [respUserLogin.token])
 
   return (
     <>
-      <Grid 
+      <Grid
         className="bgLinear"
         container
         direction="row"
@@ -108,7 +118,7 @@ function Login() {
                 label="Usuário"
                 fullWidth
                 margin="normal"
-                variant='outlined'
+                variant="outlined"
               />
               <TextField
                 onChange={(event: ChangeEvent<HTMLInputElement>) =>
@@ -124,11 +134,14 @@ function Login() {
                 margin="normal"
               />
               <Box display="flex" justifyContent="center" marginTop={2}>
-              <Link to="/home">
-                <Button type="submit" variant="contained" color="primary" disabled={!form}>
+                <Button
+                  type="submit"
+                  variant="contained"
+                  color="primary"
+                  disabled={!form}
+                >
                   Entrar
                 </Button>
-                </Link>
               </Box>
             </form>
 
@@ -148,6 +161,7 @@ function Login() {
         </Grid>
 
         <Grid item xs={6} className="imglogin"></Grid>
+
       </Grid>
     </>
   );
