@@ -22,7 +22,7 @@ function Footer() {
         alignItems="center"
               >
         <Grid alignItems="center" item xs={12}>
-          <Box style={{backgroundColor: "#408575 ", height: '78px', padding:"0.5rem"}}>
+          <Box style={{backgroundColor: "#CB2E78 ", height: '78px', padding:"0.5rem"}}>
             <Box
               paddingTop={1}
               display="flex"

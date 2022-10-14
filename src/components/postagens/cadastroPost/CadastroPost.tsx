@@ -8,13 +8,16 @@ import {
   Select,
   TextField,
   Typography,
-} from "@mui/material";
-import React, { ChangeEvent, useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
-import useLocalStorage from "react-use-localstorage";
-import Postagem from "../../../model/Postagem";
-import Tema from "../../../model/Tema";
-import { busca, buscaId, post, put } from "../../../services/Services";
+} from '@mui/material';
+import React, { ChangeEvent, useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
+import { useNavigate, useParams } from 'react-router-dom';
+import Postagem from '../../../model/Postagem';
+import Tema from '../../../model/Tema';
+import User from '../../../model/User';
+import { buscaId, busca, put, post } from '../../../services/Services';
+import { TokenState } from '../../../store/tokens/tokensReducer';
+
 
 function CadastroPostagem() {
   let navigate = useNavigate();
@@ -23,37 +26,48 @@ function CadastroPostagem() {
 
   const [temas, setTemas] = useState<Tema[]>([]);
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [token, setToken] = useLocalStorage("token");
+  const token = useSelector<TokenState, TokenState["tokens"]>(
+    (state) => state.tokens
+  )
 
   const [tema, setTema] = useState<Tema>({
     id: 0,
-    descricao: "",
+    descricao: '',
   });
+
+  //Buscar o ID dentro do REDUX
+  const userId = useSelector<TokenState, TokenState['id']>(
+    (state) => state.id
+  )
 
   const [postagem, setPostagem] = useState<Postagem>({
     id: 0,
-    titulo: "",
-    texto: "",
-    data: "",
+    titulo: '',
+    texto: '',
+    data: '',
     tema: null,
+    usuario: null //linha adicionada para inserir o usuário dono na postagem
   });
 
-  useEffect(() => {
-    if (token === "") {
-      alert("Ai não meu bom");
-      navigate("/login");
-    }
-  }, [navigate, token]);
+  //State que vai controlar o usuário que será inserido na postagem
+  const [usuario, setUsuario] = useState<User>({
+    id: +userId,
+    nome: '',
+    usuario: '',
+    senha: '',
+    foto: ''
+  })
+
+
 
   useEffect(() => {
     setPostagem({
       ...postagem,
       tema: tema,
+      usuario: usuario //adicionar o usuário dentro da postagem que está sendo enviada para o backend
     });
-  }, [postagem, tema]);
+  }, [postagem, tema, usuario]);
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   async function findByIdPostagem(id: string) {
     await buscaId(`postagens/${id}`, setPostagem, {
       headers: {
@@ -67,11 +81,10 @@ function CadastroPostagem() {
     if (id !== undefined) {
       findByIdPostagem(id);
     }
-  }, [findByIdPostagem, getTemas, id]);
+  }, [id]);
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   async function getTemas() {
-    await busca("/temas", setTemas, {
+    await busca('/temas', setTemas, {
       headers: {
         Authorization: token,
       },
@@ -96,9 +109,9 @@ function CadastroPostagem() {
             Authorization: token,
           },
         });
-        alert("Postagem atualizada com sucesso");
+        alert('Postagem atualizada com sucesso');
       } catch (error) {
-        alert("Erro ao atualizar, verifique os campos");
+        alert('Erro ao atualizar, verifique os campos');
       }
     } else {
       try {
@@ -107,12 +120,12 @@ function CadastroPostagem() {
             Authorization: token,
           },
         });
-        alert("Postagem cadastrada com sucesso");
+        alert('Postagem cadastrada com sucesso');
       } catch (error) {
-        alert("Erro ao cadastrar, verifique os campos");
+        alert('Erro ao cadastrar, verifique os campos');
       }
     }
-    navigate("/posts");
+    navigate('/posts');
   }
 
   return (
@@ -165,7 +178,7 @@ function CadastroPostagem() {
               }
             >
               {temas.map((item) => (
-                <MenuItem value={item.id} style={{ display: "block" }}>
+                <MenuItem value={item.id} style={{ display: 'block' }}>
                   {item.descricao}
                 </MenuItem>
               ))}

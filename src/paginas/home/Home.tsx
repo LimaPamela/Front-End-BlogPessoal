@@ -37,8 +37,8 @@ function Home() {
             <Grid container direction="row" justifyContent="center" alignItems="center" className='caixa'>
                 <Grid alignItems="center" item xs={6}>
                     <Box paddingX={20} >
-                        <Typography variant="h3" gutterBottom color="textPrimary" component="h3" align="center" className='titulo'>Seja bem vindo(a)!</Typography>
-                        <Typography variant="h5" gutterBottom color="textPrimary" component="h5" align="center" className='titulo'>expresse aqui os seus pensamentos e opiniões!</Typography>
+                        <Typography variant="h3" gutterBottom style={{ color: "#000000" }} component="h3" align="center" className='titulo'>Seja bem-vindo(a)!</Typography>
+                        <Typography variant="h5" gutterBottom style={{ color: "#000000" }} component="h5" align="center" className='titulo'>expresse aqui os seus pensamentos e opiniões!</Typography>
                     </Box>
                     <Box display="flex" justifyContent="center">
                         <Box marginRight={1}>
@@ -50,13 +50,7 @@ function Home() {
                     </Box>
                 </Grid>
                 <Grid item xs={6} >
-                <img
-            className="imgHome"
-            src="https://media.istockphoto.com/photos/mix-of-different-echeveria-succulent-house-plant-pots-concept-of-home-picture-id1341358322?k=20&m=1341358322&s=612x612&w=0&h=J2VaVxt-I0UTiiWZXZjGzp9mOvdQPlOjQJt-dDzEELo="
-            alt="ImgHome"
-            width="500px"
-            height="500px"
-          />
+                    <img src="https://img.freepik.com/free-vector/programmer-working-web-development-code-engineer-programming-python-php-java-script-computer_90220-249.jpg?w=740&t=st=1665709547~exp=1665710147~hmac=73c194b2e7dcd8b44ee8157ea76b128d9ae774ecdf88f486f0b42bc8564ee48e" alt="" width="500px" height="500px" />
                 </Grid>
                 <Grid xs={12} className='postagens'>
                     <TabPostagem />
@@ -67,5 +61,4 @@ function Home() {
 }
 
 export default Home;
-
 

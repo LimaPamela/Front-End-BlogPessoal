@@ -3,19 +3,19 @@
   max-height:400% !important;
 }
 
-/* .caixa{
-  background-color: #3F51B5;
-} */
+.caixa{
+  background-color: #ffffff;
+}
 
 .titulo{
- color: white !important;
+ color: black !important;
  font-weight: bold !important;
 }
 
 .botao{
-  border-color: white !important;
-  background-color: #3F51B5;
-  color: white !important;
+  border-color: #0065b6 !important;
+  background-color: black;
+  color: black !important;
 }
 
 .postagens{

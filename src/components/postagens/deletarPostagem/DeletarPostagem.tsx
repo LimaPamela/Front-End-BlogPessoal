@@ -31,7 +31,7 @@ function DeletarPostagem() {
       alert("Você precisa estar logado");
       history("/login");
     }
-  }, [token]);
+  }, [history, token]);
 
   useEffect(() => {
     if (id !== undefined) {

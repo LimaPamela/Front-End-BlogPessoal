@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/alt-text */
 import { Typography, Button } from "@material-ui/core";
 import { Box, Grid, TextField } from "@mui/material";
 import React, { ChangeEvent, useEffect, useState } from "react";
@@ -84,23 +85,58 @@ function Login() {
   }, [dispatch, navigate, token]);
 
   //metodo para pegar o token e o id do json e guardar no redux
-  useEffect(()=> {
-    if(respUserLogin.token !== ''){
-      dispatch(addToken(respUserLogin.token))
-      dispatch(addId(respUserLogin.id.toString()))
-      navigate('/home');
+  useEffect(() => {
+    if (respUserLogin.token !== "") {
+      dispatch(addToken(respUserLogin.token));
+      dispatch(addId(respUserLogin.id.toString()));
+      navigate("/home");
     }
-  }, [respUserLogin.token])
+  }, [respUserLogin.token]);
 
   return (
     <>
       <Grid
-        className="bgLinear"
         container
+        className="bgLinear"
         direction="row"
         alignItems="center"
         justifyContent="center"
       >
+        <Grid item xs={6} alignItems="center" justifyContent="center">
+          <Box paddingX={20}>
+            <Typography
+              variant="h3"
+              gutterBottom
+              color="textPrimary"
+              component="h3"
+              align="center"
+            >
+              Seja bem-vindo(a) ao meu Blog!
+            </Typography>
+            <Typography
+              variant="h5"
+              gutterBottom
+              color="textPrimary"
+              component="h5"
+              align="center"
+            >
+              {" "}
+              Desenvolvedora Full Stack 
+            </Typography>
+            <Typography
+              variant="h6"
+              gutterBottom
+              color="textPrimary"
+              component="h6"
+              align="center"
+            >
+              {" "}
+              Faça login para acompanhar como tem sido a minha transição de
+              carreira.
+            </Typography>
+          </Box>
+        </Grid>
+
         <Grid item xs={6} alignItems="center" justifyContent="center">
           <Box paddingX={20}>
             <form onSubmit={conectar}>
@@ -137,7 +173,7 @@ function Login() {
                 <Button
                   type="submit"
                   variant="contained"
-                  color="primary"
+                  style={{ color: "#0065b6" }}
                   disabled={!form}
                 >
                   Entrar
@@ -152,19 +188,19 @@ function Login() {
                 </Typography>
               </Box>
               <Link to="/cadastro">
-                <Typography variant="subtitle1" align="center">
+                <Typography
+                  variant="subtitle1"
+                  align="center"
+                  text-decoration="none"
+                >
                   Cadastre-se
                 </Typography>
               </Link>
             </Box>
           </Box>
         </Grid>
-
-        <Grid item xs={6} className="imglogin"></Grid>
-
       </Grid>
     </>
   );
 }
-
 export default Login;

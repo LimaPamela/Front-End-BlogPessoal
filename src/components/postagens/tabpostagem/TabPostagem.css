@@ -1,4 +1,4 @@
-/* .titulo{
+.titulo{
   font-weight: bold;
 }
 
@@ -6,7 +6,7 @@
  
   background-color: black !important;
   padding: 10px ; 
- } */
+ }
 
  .titulo-tab {
   color: #fff !important;
