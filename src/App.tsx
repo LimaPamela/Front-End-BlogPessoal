@@ -12,7 +12,7 @@ import { Provider } from "react-redux";
 import store from "./store/store";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
+import Perfil from "./components/perfil/Perfil";
 import Footer from "./components/footer/Footer";
 import ListaTema from "./components/temas/listaTema/ListaTema";
 import CadastroUsuario from "./paginas/cadastro/CadastroUsuario";
@@ -33,7 +33,7 @@ function App() {
           <Route path="/cadastro" element={<CadastroUsuario />} />
 
           <Route path="/home" element={<Home />} />
-          {/* <Route path="/perfil" element={<Perfil />} /> */}
+          <Route path="/perfil" element={<Perfil />} />
 
           <Route path="/temas" element={<ListaTema />} />
           <Route path="/cadastroTema" element={<CadastroTema />} />

@@ -22,7 +22,7 @@ function Footer() {
         alignItems="center"
               >
         <Grid alignItems="center" item xs={12}>
-          <Box style={{backgroundColor: "#CB2E78 ", height: '78px', padding:"0.5rem"}}>
+          <Box style={{backgroundColor: "#0f053e", height: '78px', padding:"0.5rem"}}>
             <Box
               paddingTop={1}
               display="flex"
@@ -34,7 +34,7 @@ function Footer() {
                 variant="h5"
                 align="center"
                 gutterBottom
-                style={{ color: 'black' }}
+                style={{ color: '#f9d5af' }}
               >
                 Siga-me nas redes sociais{' '}
               </Typography>
@@ -56,13 +56,13 @@ function Footer() {
               </a>
             </Box>
           </Box>
-          <Box style={{ backgroundColor: '#000000', height: '30px', padding:"0.5rem"}}>
+          <Box style={{ backgroundColor: '#0f053e', height: '30px', padding:"0.5rem"}}>
             <Box paddingTop={1}>
               <Typography
                 variant="subtitle2"
                 align="center"
                 gutterBottom
-                style={{ color: 'white' }}
+                style={{ color: '#f9d5af' }}
               >
                 © 2022 Copyright: Pamela Lima
               </Typography>

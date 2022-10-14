@@ -12,8 +12,8 @@ function TabPostagem() {
   return (
     <>
       <TabContext value={value}>
-        <AppBar position="static" style={{ backgroundColor: "#CB2E78" }}>
-          <Tabs centered indicatorColor="secondary" onChange={handleChange}>
+        <AppBar position="static" style={{ backgroundColor: "#e6059a" }}>
+          <Tabs centered style={{ color: "#0f053e" }} onChange={handleChange}>
             <Tab label="Todas as postagens" value="1" />
             <Tab label="Me conheça um pouco mais" value="2" />
           </Tabs>
@@ -27,7 +27,7 @@ function TabPostagem() {
           <Typography
             variant="h5"
             gutterBottom
-            color="textPrimary"
+            style={{ color: "#0f053e" }}
             component="h5"
             align="center"
             className="titulo"
@@ -37,7 +37,7 @@ function TabPostagem() {
           <Typography
             variant="body1"
             gutterBottom
-            color="textPrimary"
+            style={{ color: "#0f053e" }}
             align="justify"
           >
             Lorem ipsum, dolor sit amet consectetur adipisicing elit.

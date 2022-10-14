@@ -1,18 +1,35 @@
 .bgLinear{
-  background: linear-gradient(45deg, #0065b6 10%, #5253CA 30% , #CB2E78 100% ) ;
+  background: linear-gradient(210deg, #7b056c 10%, #0f053e 10%, #7b056c 10%, #0f053e 75%) ;
   max-width: 100%;
   min-height: 100vh;
 }
-.imglogin{
-  background-image: url('');
-  max-width: 100%;
-  background-repeat: no-repeat;
-  background-size: cover;
+
+.spinner {
+  margin-left: 270px !important;
+  --d: 24.6px;
+  width: 4.5px;
+  height: 4.5px;
+   border-radius: 50%;
+   color: #e6059a;
+   box-shadow: calc(1*var(--d))      calc(0*var(--d))     0 0,
+          calc(0.707*var(--d))  calc(0.707*var(--d)) 0 0.8px,
+          calc(0*var(--d))      calc(1*var(--d))     0 1.6px,
+          calc(-0.707*var(--d)) calc(0.707*var(--d)) 0 2.4px,
+          calc(-1*var(--d))     calc(0*var(--d))     0 3.2px,
+          calc(-0.707*var(--d)) calc(-0.707*var(--d))0 4px,
+          calc(0*var(--d))      calc(-1*var(--d))    0 4.8px;
+   animation: spinner-a90wxe 1s infinite steps(8);
 }
 
-.text-decoration-none {
-  text-decoration: none;
+@keyframes spinner-a90wxe {
+   100% {
+      transform: rotate(1turn);
+   }
 }
-.textos1{
-  font-weight: bold !important;
+
+.text-decoration-none{
+  text-decoration:none;
 }
+.Label{
+  color: #f9d5af !important;
+} 

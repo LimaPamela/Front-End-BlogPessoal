@@ -134,7 +134,7 @@ function CadastroPostagem() {
         <form onSubmit={onSubmit}>
           <Typography
             variant="h3"
-            color="textSecondary"
+            style={{ color: "#0f053e" }}
             component="h1"
             align="center"
           >
@@ -145,7 +145,7 @@ function CadastroPostagem() {
             value={postagem.titulo}
             onChange={(e: ChangeEvent<HTMLInputElement>) => updatedPostagem(e)}
             id="titulo"
-            label="titulo"
+            label="Título"
             variant="outlined"
             name="titulo"
             margin="normal"
@@ -156,7 +156,7 @@ function CadastroPostagem() {
             value={postagem.texto}
             onChange={(e: ChangeEvent<HTMLInputElement>) => updatedPostagem(e)}
             id="texto"
-            label="texto"
+            label="Texto"
             name="texto"
             variant="outlined"
             margin="normal"
@@ -190,7 +190,7 @@ function CadastroPostagem() {
               color="primary"
               disabled={tema.id === 0}
             >
-              Finalizar
+              Cadastrar
             </Button>
           </FormControl>
         </form>

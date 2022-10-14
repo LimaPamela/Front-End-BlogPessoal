@@ -25,10 +25,10 @@ import './Navbar.css';
           let navBarComponent
       
           if(token !== '') {
-            navBarComponent = <AppBar position="static" style={{ backgroundColor: "#CB2E78" }} >
+            navBarComponent = <AppBar position="static" style={{ backgroundColor: "#0f053e" }} >
             <Toolbar variant="dense">
               <Box className="cursor">
-                <Typography variant="h5" style={{ color: "#ffffff" }}>
+                <Typography variant="h5" style={{ color: "#f9d5af" }}>
                   PamelaLima
                 </Typography>
               </Box>
@@ -37,7 +37,7 @@ import './Navbar.css';
                 <Box display="flex" justifyContent="start">
                   <Box mx={1} className="cursor">
                     <Link to="/home" className="navLink">
-                      <Typography variant="h6" style={{ color: "#ffffff" }}>
+                      <Typography variant="h6" style={{ color: "#f9d5af" }}>
                         Home
                       </Typography>
                     </Link>
@@ -45,7 +45,7 @@ import './Navbar.css';
       
                   <Box mx={1} className="cursor">
                     <Link to="/posts" className="navLink">
-                      <Typography variant="h6" style={{ color: "#ffffff" }}>
+                      <Typography variant="h6" style={{ color: "#f9d5af" }}>
                         Postagens
                       </Typography>
                     </Link>
@@ -53,7 +53,7 @@ import './Navbar.css';
       
                   <Box mx={1} className="cursor">
                     <Link to="/temas" className="navLink">
-                      <Typography variant="h6" style={{ color: "#ffffff" }}>
+                      <Typography variant="h6" style={{ color: "#f9d5af" }}>
                         Temas
                       </Typography>
                     </Link>
@@ -61,7 +61,7 @@ import './Navbar.css';
       
                   <Box mx={1} className="cursor">
                     <Link to='/cadastroTema' className="navLink">
-                    <Typography variant="h6" style={{ color: "#ffffff" }}>
+                    <Typography variant="h6" style={{ color: "#f9d5af" }}>
                       Cadastrar Temas
                     </Typography>
                     </Link>
@@ -69,7 +69,7 @@ import './Navbar.css';
       
                   <Box mx={1} className="cursor">
                     <Link to='/perfil' className="navLink">
-                    <Typography variant="h6" style={{ color: "#ffffff" }}>
+                    <Typography variant="h6" style={{ color: "#f9d5af" }}>
                       Perfil
                     </Typography>
                     </Link>
@@ -77,7 +77,7 @@ import './Navbar.css';
       
                   <Box mx={1} className="cursor" onClick={goLogout}>
                     
-                      <Typography variant="h6" style={{ color: "#ffffff" }}>
+                      <Typography variant="h6" style={{ color: "#f9d5af" }}>
                         Logout
                       </Typography>
                     

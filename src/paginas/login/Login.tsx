@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/alt-text */
 import { Typography, Button } from "@material-ui/core";
 import { Box, Grid, TextField } from "@mui/material";
 import React, { ChangeEvent, useEffect, useState } from "react";
@@ -91,7 +90,8 @@ function Login() {
       dispatch(addId(respUserLogin.id.toString()));
       navigate("/home");
     }
-  }, [respUserLogin.token]);
+  }, [dispatch, navigate, respUserLogin.id, respUserLogin.token]);
+
 
   return (
     <>
@@ -103,77 +103,72 @@ function Login() {
         justifyContent="center"
       >
         <Grid item xs={6} alignItems="center" justifyContent="center">
-          <Box paddingX={20}>
+          <Box paddingX={10}>
             <Typography
               variant="h3"
               gutterBottom
-              color="textPrimary"
               component="h3"
               align="center"
+              style={{ color: "#f9d5af" }} 
             >
               Seja bem-vindo(a) ao meu Blog!
             </Typography>
-            <Typography
-              variant="h5"
-              gutterBottom
-              color="textPrimary"
-              component="h5"
-              align="center"
-            >
-              {" "}
-              Desenvolvedora Full Stack 
-            </Typography>
+
             <Typography
               variant="h6"
               gutterBottom
-              color="textPrimary"
               component="h6"
               align="center"
+              style={{ color: "#f9d5af" }} 
             >
               {" "}
-              Faça login para acompanhar como tem sido a minha transição de
-              carreira.
+              Faça login e me acompanhe nessa transição de carreira para me tornar uma Desenvolvedora Full Stack
             </Typography>
+
+            <br></br>
+            <p><div className="spinner"></div> </p>
           </Box>
         </Grid>
 
         <Grid item xs={6} alignItems="center" justifyContent="center">
           <Box paddingX={20}>
             <form onSubmit={conectar}>
-              <Typography variant="h2" align="center">
+              <Typography variant="h3" align="center"  style={{ color: "#f9d5af" }}>
                 Entrar
               </Typography>
 
-              <TextField
+              <TextField 
                 onChange={(event: ChangeEvent<HTMLInputElement>) =>
                   updateModel(event)
                 }
                 value={userLogin.usuario}
                 id="usuario"
                 name="usuario"
-                label="Usuário"
+                label="Usuário" 
                 fullWidth
                 margin="normal"
                 variant="outlined"
+                
               />
-              <TextField
+              <TextField 
                 onChange={(event: ChangeEvent<HTMLInputElement>) =>
                   updateModel(event)
                 }
                 value={userLogin.senha}
                 id="senha"
                 name="senha"
-                label="Senha"
+                label="Senha"className="Label" 
                 variant="outlined"
                 type="password"
                 fullWidth
                 margin="normal"
+                
               />
               <Box display="flex" justifyContent="center" marginTop={2}>
                 <Button
                   type="submit"
                   variant="contained"
-                  style={{ color: "#0065b6" }}
+                  style={{ color: "#0f053e" }}
                   disabled={!form}
                 >
                   Entrar
@@ -181,18 +176,16 @@ function Login() {
               </Box>
             </form>
 
-            <Box display="flex" justifyContent="center" marginTop={2}>
+            <Box display="flex" justifyContent="center" marginTop={2} className="btgCadastro">
               <Box marginRight={1}>
-                <Typography variant="subtitle1">
+                <Typography variant="subtitle1"  style={{ color: "#0f053e" }} >
                   Ainda não tem uma conta?
                 </Typography>
               </Box>
-              <Link to="/cadastro">
+              <Link to="/cadastro" className="text-decoration-none" >
                 <Typography
                   variant="subtitle1"
-                  align="center"
-                  text-decoration="none"
-                >
+                  align="center"  style={{ color: "#e6059a" }} >
                   Cadastre-se
                 </Typography>
               </Link>

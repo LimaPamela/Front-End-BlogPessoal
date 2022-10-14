@@ -1,15 +1,23 @@
 .bg-cadastro {
   min-height: 100vh;
-  background-image: url('https://images.unsplash.com/photo-1584203031510-d14944f5d5d8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80');
+  background-image: url('https://img.freepik.com/premium-vector/web-development_73903-164.jpg?w=826');
   max-width: 100%;
   background-repeat: no-repeat;
   background-size: cover;
+  width:200px;
+  height:200px;
   
 }
-.textos2{
-  font-weight: bold !important;
+
+.bgCad{
+  background: #ffffff ;
+  max-width: 100%;
+  min-height: 100vh;
 }
 
-.btnCancelar{
-  margin-right: 20px !important;
+.btgCancelar{
+  color: #f9d5af;
+}
+.text-decoration-none{
+  text-decoration:none;
 }
